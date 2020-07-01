@@ -1,0 +1,38 @@
+#! /usr/bin/env bash
+pwddir=$(pwd)
+files="${pwddir}/jacobbot/"
+modules=("webapp" "java" "discord" "database" "telegram")
+mkdir $files
+if ! hash python3-venv 2>/dev/null
+then
+	sudo apt-get install python3-venv -y
+fi
+for module in ${modules[@]}
+do
+	modulepath="${files}${module}"
+	mkdir $modulepath
+
+	if [ ${module} = "java" ]
+	then
+		cd $modulepath
+		git init
+		git remote add origin git@github.com:nibble90/jacobbot-${module}.git
+		git pull origin master
+		git branch --set-upstream-to=origin/master
+		git config --global user.name "nibble90"
+		git config --global user.email "nibble90@live.com"
+	else
+		python3 -m venv $modulepath
+		cd $modulepath
+		source bin/activate
+		git init
+		git remote add origin git@github.com:nibble90/jacobbot-${module}.git
+		git pull origin master
+		git branch --set-upstream-to=origin/master
+		git config --global user.name "nibble90"
+		git config --global user.email "nibble90@live.com"
+		pip3 install wheel
+		pip3 install -r requirements.txt
+		deactivate
+	fi
+done
