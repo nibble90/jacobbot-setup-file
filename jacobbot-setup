@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 pwddir=$(pwd)
 files="${pwddir}/jacobbot/"
-modules=("webapp" "java" "discord" "database" "telegram")
+modules=("webapp" "java" "discord" "database" "telegram" "reddit-grabber" "weather-grabber")
 mkdir $files
 if ! hash python3-venv 2>/dev/null
 then
