@@ -21,6 +21,20 @@ do
 		git branch --set-upstream-to=origin/master
 		git config --global user.name "nibble90"
 		git config --global user.email "nibble90@live.com"
+	elif [ ${module} = "reddit-grabber" ] || [ ${module} == "weather-grabber" ]
+	then
+		python3 -m venv $modulepath
+		cd $modulepath
+		source bin/activate
+		git init
+		git remote add origin git@github.com:nibble90/${module}.git
+		git pull origin master
+		git branch --set-upstream-to=origin/master
+		git config --global user.name "nibble90"
+		git config --global user.email "nibble90@live.com"
+		pip3 install wheel
+		pip3 install -r requirements.txt
+		deactivate
 	else
 		python3 -m venv $modulepath
 		cd $modulepath
