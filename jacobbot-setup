@@ -2,6 +2,9 @@
 pwddir=$(pwd)
 files="${pwddir}/jacobbot/"
 modules=("webapp" "java" "discord" "database" "telegram" "reddit-grabber" "weather-grabber")
+username="nibble90"
+email="nibble90@live.com"
+
 mkdir $files
 if ! hash python3-venv 2>/dev/null
 then
@@ -19,8 +22,8 @@ do
 		git remote add origin git@github.com:nibble90/jacobbot-${module}.git
 		git pull origin master
 		git branch --set-upstream-to=origin/master
-		git config --global user.name "nibble90"
-		git config --global user.email "nibble90@live.com"
+		git config --global user.name ${username}
+		git config --global user.email ${email}
 	elif [ ${module} = "reddit-grabber" ] || [ ${module} == "weather-grabber" ]
 	then
 		python3 -m venv $modulepath
@@ -30,8 +33,8 @@ do
 		git remote add origin git@github.com:nibble90/${module}.git
 		git pull origin master
 		git branch --set-upstream-to=origin/master
-		git config --global user.name "nibble90"
-		git config --global user.email "nibble90@live.com"
+		git config --global user.name ${username}
+		git config --global user.email ${email}
 		pip3 install wheel
 		pip3 install -r requirements.txt
 		deactivate
@@ -43,8 +46,8 @@ do
 		git remote add origin git@github.com:nibble90/jacobbot-${module}.git
 		git pull origin master
 		git branch --set-upstream-to=origin/master
-		git config --global user.name "nibble90"
-		git config --global user.email "nibble90@live.com"
+		git config --global user.name ${username}
+		git config --global user.email ${email}
 		pip3 install wheel
 		pip3 install -r requirements.txt
 		deactivate
