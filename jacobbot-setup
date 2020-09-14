@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 pwddir=$(pwd)
 files="${pwddir}/jacobbot/"
-modules=("webapp" "java" "discord" "database" "telegram" "reddit-grabber" "weather-grabber")
+modules=("webapp" "java" "discord" "database" "telegram" "reddit-grabber" "weather-grabber" "twitter-interface")
 username="nibble90"
 email="nibble90@live.com"
 
@@ -24,7 +24,7 @@ do
 		git branch --set-upstream-to=origin/master
 		git config --global user.name ${username}
 		git config --global user.email ${email}
-	elif [ ${module} = "reddit-grabber" ] || [ ${module} == "weather-grabber" ]
+	elif [ ${module} = "reddit-grabber" ] || [ ${module} == "weather-grabber" ] || [ ${module} == "twitter-interface" ]
 	then
 		python3 -m venv $modulepath
 		cd $modulepath
